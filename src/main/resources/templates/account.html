@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TakeCare</title>
+    <link rel="stylesheet" th:href="@{assets/css/bootstrap.min.css}" />
+    <link rel="shortcut icon" th:href="@{assets/image/logo.png}" type="img/png" />
+    <link rel="stylesheet" th:href="@{assets/css/costume.css}">
+</head>
+
+
+<body style="background-color: #FEFEFE;">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #17252A;">
+        <div class="container">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="home">
+                    <img th:src="@{assets/image/logo.png}" style="width: 50px;" />
+                    TakeCare
+                </a>
+            </div>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="appointment">Appointment</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="shop">Shop</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="blog">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Account</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container" style="height: 587px;">
+        <div class="my-5 container-fluid d-flex justify-content-center">
+            <h1 class="font-weight-bold" style="color: #2B7A78;">Profile</h1>
+        </div>
+        <div class="row">
+            <div class="container col-6">
+                <form th:object="${user}" th:action="@{/update}" method="post">
+                    <div class="mx-0 mb-3 row">
+                        <div class="md-3">
+                            <label class="form-label">First Name</label>
+                            <input id="firstNameInput" th:value="${user.first_name}" class="form-control" style="width: 200px;"  name="first_name" disabled>
+                        </div>
+                        <div class="mx-4 md-3">
+                            <label class="form-label">Last Name</label>
+                            <input name="last_name" id="lastNameInput" th:value="${user.last_name}" class="form-control" style="width: 200px;"
+                                disabled>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input name="email" id="emailInput" th:value="${user.email}" class="form-control" style="width: 425px;" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Phone Number</label>
+                        <input name="phoneNumber" id="phoneInput" th:value="${user.phone_Number}" class="form-control" style="width: 425px;"
+                            disabled>
+                    </div>
+                    <div class="row mt-5 mx-0">
+                        <a href="#" id="editProfileBtn" class="btn btn-outline-info mr-4" onclick="toggleEditMode()">Edit
+                            Profile</a>
+                        <button id="saveProfileBtn" type="submit" class="btn btn-outline-info mr-4"
+                            style="display: none;">Save</button>
+                        <button id = "cancelProfileBtn" type="button" class="btn btn-outline-info mr-4" onclick="toggleCancelMode()" style="display : none;">
+                            Cancel
+                        </button>
+                        <a id = "changePassword" class="btn btn-outline-info mr-4">Change Password</a>
+                    
+                </form>
+                <form th:object = "${user}" th:action="@{/login}" method="POST">
+                    <button id = "logOut" type = "submit" class="btn btn-outline-danger">Log Out</button>
+                </form>
+                </div>
+            </div>
+            <div class="container col-6" style = "height: 500;">
+                <div class="mt-0">
+                    Your Appointmens
+                </div>
+                <div class="container border border-5 border-dark" style="height: 400;">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="footer fixed-bottom">
+        <div class="container-fluid d-flex justify-content-center align-items-center"
+            style="background-color: #17252A; height: 50px;">
+            <div class="font-weight-light" style="color: #FEFFFF;">
+                Privacy Policy • Sitemap • Support • ⓒ 2020 Orbit Media Studios
+            </div>
+        </div>
+    </footer>
+    <script th:src="@{assets/js/bootstrap.bundle.min.js}"></script>
+    <script>
+
+        var defaultfirstNameInput = document.getElementById('firstNameInput').value;
+        var defaultlastNameInput = document.getElementById('lastNameInput').value;
+        var defaultemailInput =document.getElementById('emailInput').value;
+        var defaultphoneInput = document.getElementById('phoneInput').value;
+
+        var firstNameInput = document.getElementById('firstNameInput');
+        var lastNameInput = document.getElementById('lastNameInput');
+        var emailInput = document.getElementById('emailInput');
+        var phoneInput = document.getElementById('phoneInput');
+        var editProfileBtn = document.getElementById('editProfileBtn');
+        var saveProfileBtn = document.getElementById('saveProfileBtn');
+        var cancelProfileBtn = document.getElementById('cancelProfileBtn');
+        var changePassword = document.getElementById('changePassword');
+        var logOut = document.getElementById('logOut');
+
+        function toggleEditMode() {
+            if (firstNameInput.disabled) {
+                firstNameInput.disabled = false;
+                lastNameInput.disabled = false;
+                emailInput.disabled = false;
+                phoneInput.disabled = false;
+                editProfileBtn.style.display = 'none';
+                changePassword.style.display = 'none';
+                logOut.style.display = 'none';
+                cancelProfileBtn.style.display = 'inline-block';
+                saveProfileBtn.style.display = 'inline-block';
+            } else {
+                firstNameInput.disabled = true;
+                lastNameInput.disabled = true;
+                emailInput.disabled = true;
+                phoneInput.disabled = true;
+                editProfileBtn.style.display = 'inline-block';
+                changePassword.style.display = 'inline-block';
+                logOut.style.display = 'inline-block';
+                cancelProfileBtn.style.display = 'none';
+                saveProfileBtn.style.display = 'none';
+            }
+        }
+
+        function toggleCancelMode(){
+            firstNameInput.value = defaultfirstNameInput;
+            lastNameInput.value = defaultlastNameInput;
+            emailInput.value = defaultemailInput;
+            phoneInput.value = defaultphoneInput;
+
+            firstNameInput.disabled = true;
+            lastNameInput.disabled = true;
+            emailInput.disabled = true;
+            phoneInput.disabled = true;
+            editProfileBtn.style.display = 'inline-block';
+            changePassword.style.display = 'inline-block';
+            logOut.style.display = 'inline-block';
+            cancelProfileBtn.style.display = 'none';
+            saveProfileBtn.style.display = 'none';
+        }
+
+    </script>
+</body>
+
+</html>

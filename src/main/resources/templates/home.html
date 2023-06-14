@@ -8,37 +8,61 @@
     <title>TakeCare</title>
     <link rel="stylesheet" th:href="@{assets/css/bootstrap.min.css}" />
     <link rel="shortcut icon" th:href="@{assets/image/logo.png}" type="img/png" />
+    <link rel="stylesheet" th:href="@{assets/css/costume.css}">
 </head>
 
 
 <body style="background-color: #FEFEFE;">
-    <nav class="navbar navbar-expand-lg navbar-light m-4">
-        <div class="container-fluid">
-            <a class="navbar-brand" th:href="@{index}">
-                <img th:src="@{assets/image/logo.png}" style="width: 50px;" />
-                TakeCare
-            </a>
-        </div>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="shop">Shop</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="doctor">Doctor</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="blog">Blog</a>
-                </li>
-                <button class="btn-primary">
-                    Login
-                </button>
-            </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #17252A;">
+        <div class="container">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="home">
+                    <img th:src="@{assets/image/logo.png}" style="width: 50px;" />
+                    TakeCare
+                </a>
+            </div>
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="appointment">Appointment</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="shop">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="account">Account</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
+
+    <div class="container-fluid d-flex align-items-center" style="height: 587px;">
+        <div class="row m-5">
+            <h6 class="col-12 font-weight-light">Welcome to TakeCare</h6>
+            <h1 class="font-weight-bold col-12" style="color: #2B7A78;">Most trusted Health <br> Partner for Life</h1>
+            <h6 class="col-4 font-weight-light mb-5">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio vitae maiores eos? Autem et, quas alias reprehenderit enim laboriosam corporis doloremque dignissimos saepe laborum dolor iste, illum quod! Odit similique assumenda totam nisi natus eveniet tempore, voluptates, suscipit a rerum ipsa illum aliquam quod ab quia vitae quaerat expedita?</h6>
+            <div class = "col-8"></div>
+            <a href = "appointment" class="btn btn-outline-success mx-3 rounded-5" style="width: 200px; font-size: small;">Make an Appointment</a>
+            <a href = "shop" class="btn btn-outline-primary mx-3 rounded-5" style="width: 200px; font-size: small;">Go to shop</a>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container-fluid d-flex flex-column justify-content-center align-items-center"
+            style="background-color: #17252A; height: 50px;">
+            <div class="font-weight-light" style="color: #FEFFFF;">
+                Privacy Policy • Sitemap • Support • ⓒ 2020 Orbit Media Studios
+            </div>
+        </div>
+    </footer>
     <script th:src="@{assets/js/bootstrap.bundle.min.js}"></script>
 </body>
 

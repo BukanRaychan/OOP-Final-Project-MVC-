@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TakeCare</title>
+    <link rel="stylesheet" th:href="@{assets/css/bootstrap.min.css}" />
+    <link rel="shortcut icon" th:href="@{assets/image/logo.png}" type="img/png" />
+    <link rel="stylesheet" th:href="@{assets/css/costume.css}">
+</head>
+
+
+<body style="background-color: #FEFEFE;">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #17252A;">
+        <div class="container">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="home">
+                    <img th:src="@{assets/image/logo.png}" style="width: 50px;" />
+                    TakeCare
+                </a>
+            </div>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="appointment">Appointment</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="shop">Shop</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="blog">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="account">Account</a>
+                </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+    <div class="container-fluid" style="height: 587px;">
+    
+    </div>
+
+    <footer class="footer">
+        <div class="container-fluid d-flex justify-content-center align-items-center" style="background-color: #17252A; height: 50px;">
+            <div class="font-weight-light" style="color: #FEFFFF;">
+                Privacy Policy • Sitemap • Support • ⓒ 2020 Orbit Media Studios
+            </div>
+        </div>
+    </footer>
+    <script th:src="@{assets/js/bootstrap.bundle.min.js}"></script>
+</body>
+
+</html>

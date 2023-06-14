@@ -1,16 +1,62 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TakeCare</title>
-    <link rel="stylesheet" th:href="@{assets/css/bootstrap.min.css}"/>
-    <link rel="shortcut icon" th:href="@{assets/image/logo.png}" type="img/png"/>
+    <link rel="stylesheet" th:href="@{assets/css/bootstrap.min.css}" />
+    <link rel="shortcut icon" th:href="@{assets/image/logo.png}" type="img/png" />
+    <link rel="stylesheet" th:href="@{assets/css/costume.css}">
 </head>
 
+<style>
+    body {
+        background-image: url("../assets/image/InitBackground.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+</style>
+
 <body>
-    
-    <script th:src ="@{assets/js/bootstrap.bundle.min.js}"></script>
+    <div class="container m-5" style="height: 300px; width: 750px;">
+        <h1 class="mt-4 mb-4" style="font-family: 'Poppins', sans-serif; font-weight: bold; ">Sign Up</h1>
+        <form th:action = "@{/signupButtonClicked}" method="post">
+            <div class="mx-0 mb-3 row">
+                <div class="md-3">
+                    <label class="form-label">First Name</label>
+                    <input name = "first_name" th:value = "${first_name}" class="form-control" style="width: 200px;">
+                </div>
+                <div class="mx-4 md-3">
+                    <label class="form-label">Last Name</label>
+                    <input name = "last_name" th:value="${last_name}" class="form-control" style="width: 200px;">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" name = "email" th:value="${email}" class="form-control" style="width: 425px;">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Phone Number</label>
+                <input name = "phone_number" th:value="${phone_number}" class="form-control" style="width: 425px;">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type = "password" name="password" class="form-control" style="width: 425px;">
+            </div>
+            <div class="mb-4">
+                <label class="form-label">Confirm Password</label>
+                <input name="confirm_password" type = "password" class="form-control" style="width: 425px;">
+            </div>
+            <button type="submit" class="btn btn-primary mb-5">Submit</button>
+        </form>
+        <div class=" container row">
+                <p>Already have an account ?</p> 
+                <a class = "mx-1" href="login">Log in</a>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

@@ -1,43 +1,176 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TakeCare</title>
-    <link rel="stylesheet" th:href="@{assets/css/bootstrap.min.css}"/>
-    <link rel="shortcut icon" th:href="@{assets/image/logo.png}" type="img/png"/>
+    <link rel="stylesheet" th:href="@{assets/css/bootstrap.min.css}" />
+    <link rel="shortcut icon" th:href="@{assets/image/logo.png}" type="img/png" />
+    <link rel="stylesheet" th:href="@{assets/css/costume.css}">
 </head>
 
 
 <body style="background-color: #FEFEFE;">
-    <nav class="navbar navbar-expand-lg navbar-light m-4">
-        <div class="container-fluid">
-            <a class="navbar-brand" th:href="@{index}">
-                <img th:src="@{assets/image/logo.png}" style="width: 50px;" />
-                TakeCare
-            </a>
-        </div>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ms mb-2">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #17252A;">
+        <div class="container">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="home">
+                    <img th:src="@{assets/image/logo.png}" style="width: 50px;" />
+                    TakeCare
+                </a>
+            </div>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="home">Home</a>
+                    <a class="nav-link" href="home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="appointment">Appointment</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="#">Shop</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="doctor">Doctor</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="blog">Blog</a>
                 </li>
-                <button class="btn-primary">
-                    Login
-                </button>
+                <li class="nav-item">
+                    <a class="nav-link" href="about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="account">Account</a>
+                </li>
             </ul>
         </div>
+        </div>
     </nav>
+
+    <div class="container">
+        <div class="my-5 container-fluid d-flex justify-content-center">
+            <h1 class="font-weight-bold" style="color: #2B7A78;">Shop</h1>
+        </div>
+        <div class="row">
+            <div class="container-fluid col-8">
+                <div class="row mb-3">
+                    <div class="container-fluid col-6 d-flex justify-content-center mb-5">
+                        <div class="card rounded rounded-5" style="width: 18rem;">
+                            <img th:src="@{assets/image/Paracetamol.jpg}" class="card-img-top">
+                            <form th:action="@{/addToChart}" method="post">
+                                <div class="card-body">
+                                    <h5 class="card-title">Paracetamol</h5>
+                                    <div class="card-text text-secondary-emphasis" style="font-size: small;">Harga :
+                                    </div>
+                                    <p class="card-text text-info">5000</p>
+                                    <input type="text" name="idBarang" value="1" hidden>
+                                    <input type="text" name="quantity" >
+                                    <a href="#" class="btn btn-success rounded rounded-5">
+                                        <button type="submit">
+                                            Add to chart
+                                        </button> </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="container-fluid col-6 d-flex justify-content-center mb-5">
+                        <div class="card rounded rounded-5" style="width: 18rem;">
+                            <img th:src="@{assets/image/Ibuprofen.jpg}" class="card-img-top">
+                            <form th:action="@{/addToChart}" method="post">
+                                <div class="card-body">
+                                    <h5 class="card-title">Ibuprofen</h5>
+                                    <div class="card-text text-secondary-emphasis" style="font-size: small;">Harga :
+                                    </div>
+                                    <p class="card-text text-info">10000</p>
+                                    <input type="text" name="idBarang" value="2" hidden>
+                                    <input type="text" name="quantity" >
+                                    <a href="#" class="btn btn-success rounded rounded-5">
+                                        <button type="submit">
+                                            Add to chart
+                                        </button> </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="container-fluid col-6 d-flex justify-content-center mb-5">
+                        <div class="card rounded rounded-5" style="width: 18rem;">
+                            <img th:src="@{assets/image/Amoxicillin.jpg}" class="card-img-top">
+                            <form th:action="@{/addToChart}" method="post">
+                                <div class="card-body">
+                                    <h5 class="card-title">Amoxicillin</h5>
+                                    <div class="card-text text-secondary-emphasis" style="font-size: small;">Harga :
+                                    </div>
+                                    <p class="card-text text-info">15000</p>
+                                    <input type="text" name="idBarang" value="3" hidden>
+                                    <input type="text" name="quantity" >
+                                    <a href="#" class="btn btn-success rounded rounded-5">
+                                        <button type="submit">
+                                            Add to chart
+                                        </button> </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="container-fluid col-6 d-flex justify-content-center mb-5">
+                        <div class="card rounded rounded-5" style="width: 18rem;">
+                            <img th:src="@{assets/image/Omeprazole.jpg}" class="card-img-top">
+                            <form th:action="@{/addToChart}" method="post">
+                                <div class="card-body">
+                                    <h5 class="card-title">Omeprazole</h5>
+                                    <div class="card-text text-secondary-emphasis" style="font-size: small;">Harga :
+                                    </div>
+                                    <p class="card-text text-info">2000</p>
+                                    <input type="text" name="idBarang" value="4" hidden>
+                                    <input type="text" name="quantity" >
+                                    <a href="#" class="btn btn-success rounded rounded-5">
+                                        <button type="submit">
+                                            Add to chart
+                                        </button> </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid col-4 border border-5" style="height: 500px;">
+                <div class="mt-2">
+                    <h5>Chart</h5>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nama</th>
+                                <th>Harga</th>
+                                <th>Jumlah</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Looping through the list -->
+                            <tr th:if="${chartItems != null}" th:each="item : ${chartItems}">
+                                <td th:text="${item.name}"></td>
+                                <td th:text="${item.price}"></td>
+                                <td th:text="${item.quantity}"></td>
+                                <td th:text="${item.price * item.quantity}"></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="3" class="text-right">Total</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container-fluid d-flex justify-content-center align-items-center"
+            style="background-color: #17252A; height: 50px;">
+            <div class="font-weight-light" style="color: #FEFFFF;">
+                Privacy Policy • Sitemap • Support • ⓒ 2020 Orbit Media Studios
+            </div>
+        </div>
+    </footer>
     <script th:src="@{assets/js/bootstrap.bundle.min.js}"></script>
 </body>
+
 </html>

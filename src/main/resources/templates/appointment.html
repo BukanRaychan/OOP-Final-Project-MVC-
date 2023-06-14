@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TakeCare</title>
+    <link rel="stylesheet" th:href="@{assets/css/bootstrap.min.css}" />
+    <link rel="shortcut icon" th:href="@{assets/image/logo.png}" type="img/png" />
+    <link rel="stylesheet" th:href="@{assets/css/costume.css}">
+</head>
+
+
+<body style="background-color: #FEFEFE;">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #17252A;">
+        <div class="container">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="home">
+                    <img th:src="@{assets/image/logo.png}" style="width: 50px;" />
+                    TakeCare
+                </a>
+            </div>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Appointment</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="shop">Shop</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="blog">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="account">Account</a>
+                </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+
+    <div div class="container" style="height: 587px;">
+        <div class="my-5 container-fluid d-flex justify-content-center">
+            <h1 class="font-weight-bold" style="color: #2B7A78;">Book an Appointment</h1>
+        </div>
+        <div class="row mb-2">
+            <div class="font-weight-bold col-4 mr-5">
+                Location
+            </div>
+            <div class="font-weight-bold col-4 ml-5">
+                Speciality
+            </div>
+        </div>
+        <div class="row mb-5">
+            <select name="Location" class="btn btn-outline border border-5 col-4 mr-5"
+                onchange="updateSpecialityOptions(this)">
+                <option value="default">Choose location</option>
+                <option value="Bandung">Bandung</option>
+                <option value="Jakarta">Jakarta</option>
+            </select>
+            <select name="Speciality" class="btn btn-outline border border-5 col-4 ml-5"  
+            disabled onchange="updateDoctorOptions(this)">
+                <option value="location">Location</option>
+            </select>
+        </div>
+        <div class="row mb-2">
+            <div class="font-weight-bold col-4 mr-5">
+                Doctor
+            </div>
+            <div class="font-weight-bold col-4 ml-5">
+                Date
+            </div>
+        </div>
+        <div class="row mb-5">
+            <select name="Doctor" class="btn btn-outline border border-5 col-4 mr-5" disabled>
+                <option value="default">Doctor</option>
+            </select>
+            <input name="appointmentDate" type="date" class="btn btn-outline border border-5 col-4 ml-5" disabled>
+        </div>
+        <div class="row mb-2">
+            <div class="font-weight-bold col-4 mr-5">
+                Time
+            </div>
+        </div>
+        <div class="row mb-5">
+            <select name="Time" class="btn btn-outline border border-5 col-4 mr-5" disabled>
+                <option value="default">Select a </option>
+            </select>
+        </div>
+    </div>
+
+    <footer class="footer fixed-bottom">
+        <div class="container-fluid d-flex justify-content-center align-items-center"
+            style="background-color: #17252A; height: 50px;">
+            <div class="font-weight-light" style="color: #FEFFFF;">
+                Privacy Policy • Sitemap • Support • ⓒ 2020 Orbit Media Studios
+            </div>
+        </div>
+    </footer>
+    <script th:src="@{assets/js/bootstrap.bundle.min.js}"></script>
+    <script>
+        function updateSpecialityOptions(selectLocation) {
+            var selectSpeciality = document.getElementsByName('Speciality')[0];
+            selectSpeciality.disabled = false; // Enable the speciality select
+    
+            // Remove all options from speciality select
+            selectSpeciality.options.length = 0;
+    
+            // Get the selected location
+            var selectedLocation = selectLocation.value;
+    
+            // Add options based on the selected location
+            if (selectedLocation == 'Bandung') {
+                selectSpeciality.options.add(new Option('Orthopedics', 'Orthopedics'));
+                selectSpeciality.options.add(new Option('Neurology', 'Neurology'));
+            } else if (selectedLocation == 'Jakarta') {
+                selectSpeciality.options.add(new Option('Dentist', 'Dentist'));
+                selectSpeciality.options.add(new Option('Dermatology', 'Dermatology'));
+            } else {
+                // Default option
+                selectSpeciality.options.add(new Option('Speciality', 'speciality'));
+                selectSpeciality.disabled = true; // Disable the speciality select
+            }
+        }
+    
+        function updateDoctorOptions(selectSpeciality){
+            var selectDoctor = document.getElementsByName('Doctor')[0];
+            var selectDate = document.getElementsByName('appointmentDate')[0];
+            var selectTime = document.getElementsByName('Time')[0];
+            selectDoctor.disabled = false; 
+            selectDate.disabled = false;
+            selectTime.disabled = false;
+    
+            var selectedSpeciality = selectSpeciality.value;
+            
+            // Clear the doctor select options
+            selectDoctor.options.length = 0;
+    
+            // Add options based on the selected speciality
+            if (selectedSpeciality == 'Orthopedics') {
+                selectDoctor.options.add(new Option('Dr. Andi Susanto, Sp.OT', 'Andi Susanto, Sp.OT'));
+                selectDoctor.options.add(new Option('Dr. Budi Prasetyo, Sp.OT', 'Budi Prasetyo, Sp.OT'));
+                selectDoctor.options.add(new Option('Dr. Candra Wijaya, Sp.OT', 'Candra Wijaya, Sp.OT'));
+            } else if (selectedSpeciality == 'Neurology') {
+                selectDoctor.options.add(new Option('Dr. Desi Purnama, Sp.S', 'Desi Purnama, Sp.S'));
+                selectDoctor.options.add(new Option('Dr. Eka Dewi, Sp.S', 'Eka Dewi, Sp.S'));
+                selectDoctor.options.add(new Option('Dr. Fauzan Rizal, Sp.S', 'Fauzan Rizal, Sp.S'));
+            } else if (selectedSpeciality == 'Dentist') {
+                selectDoctor.options.add(new Option('Dr. Gita Wijaya, drg.', 'Gita Wijaya, drg.'));
+                selectDoctor.options.add(new Option('Dr. Hadi Pramono, drg.', 'Hadi Pramono, drg.'));
+                selectDoctor.options.add(new Option('Dr. Indah Sari, drg.', 'Indah Sari, drg.'));
+            } else if (selectedSpeciality == 'Dermatology') {
+                selectDoctor.options.add(new Option('Dr. Joko Santoso, Sp.KK', 'Joko Santoso, Sp.KK'));
+                selectDoctor.options.add(new Option('Dr. Kusuma Dewi, Sp.KK', 'Kusuma Dewi, Sp.KK'));
+                selectDoctor.options.add(new Option('Dr. Linda Putri, Sp.KK', 'Linda Putri, Sp.KK'));
+            } else {
+                // Default option
+                selectDoctor.options.add(new Option('Doctor', 'doctor'));
+                selectDoctor.disabled = true; // Disable the doctor select
+            }
+        }
+    </script>    
+</body>
+
+</html>
