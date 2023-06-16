@@ -3,8 +3,6 @@ package com.TakeCare.catalog.models.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.mapping.ManyToOne;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,13 +10,11 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 
 @Entity
 public class UserEntity {
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -31,16 +27,15 @@ public class UserEntity {
     private String phone_Number;
     private String password;
 
-    // @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
-    // private List<AppointmentEntity> appointment;
-
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
-    private List<ChartEntity> chart;
+    private List<CartEntity> cart;
+
+    // @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
+    // private List<OrdersEntity> order;
 
     public UserEntity() {
     }
 
-    
     public UserEntity(String first_name, String last_name, String email, String phone_Number, String password) {
         this.first_name = first_name;
         this.last_name = last_name;
@@ -48,6 +43,25 @@ public class UserEntity {
         this.phone_Number = phone_Number;
         this.password = password;
     }
+    
+    public List<CartEntity> getCart() {
+        return this.cart;
+    }
+
+    public void setCart(List<CartEntity> cart) {
+        this.cart = cart;
+    }
+
+    // public List<OrdersEntity> getOrder() {
+    //     return this.order;
+    // }
+
+    // public void setOrder(List<OrdersEntity> order) {
+    //     this.order = order;
+    // }
+
+    
+    
 
     public int getId() {
         return this.id;
@@ -98,31 +112,19 @@ public class UserEntity {
     }
 
 
-    // public List<AppointmentEntity> getAppointment() {
-    //     return this.appointment;
-    // }
-
-    // public void setAppointment(List<AppointmentEntity> appointment) {
-    //     this.appointment = appointment;
-    // }
-
-
-    public List<ChartEntity> getChart() {
-        return this.chart;
+    public List<CartEntity> getChart() {
+        return this.cart;
     }
 
-    public void addChart(ChartEntity chart) {
-        if (this.chart != null){
-            this.chart.add(chart);
+    public void addChart(CartEntity cart) {
+        if (this.cart != null){
+            this.cart.add(cart);
         } else {
-            this.chart = new ArrayList<>();
+            this.cart = new ArrayList<>();
         }
     }
 
-    public void resetChart(){
-        chart = new ArrayList<>();
+    public void resetCart(){
+        cart = new ArrayList<>();
     }
-
-
-
 }

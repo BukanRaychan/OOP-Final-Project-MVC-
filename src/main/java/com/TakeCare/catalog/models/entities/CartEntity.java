@@ -12,7 +12,7 @@ import jakarta.persistence.OneToOne;
 import java.util.Objects;
 
 @Entity
-public class ChartEntity {
+public class CartEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -69,31 +69,32 @@ public class ChartEntity {
         this.quantity = quantity;
     }
 
-    public ChartEntity() {
+    public CartEntity() {
     }
 
-    public ChartEntity( String name, double price, int quantity) {
+    public CartEntity( String name, double price, int quantity, UserEntity user) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
+        this.user = user;
     }
 
-    public ChartEntity id(int id) {
+    public CartEntity id(int id) {
         setId(id);
         return this;
     }
 
-    public ChartEntity name(String name) {
+    public CartEntity name(String name) {
         setName(name);
         return this;
     }
 
-    public ChartEntity price(double price) {
+    public CartEntity price(double price) {
         setPrice(price);
         return this;
     }
 
-    public ChartEntity quantity(int quantity) {
+    public CartEntity quantity(int quantity) {
         setQuantity(quantity);
         return this;
     }
@@ -107,5 +108,4 @@ public class ChartEntity {
                 ", quantity='" + getQuantity() + "'" +
                 "}";
     }
-
 }

@@ -11,6 +11,13 @@
     <link rel="stylesheet" th:href="@{assets/css/costume.css}">
 </head>
 
+<style>
+    .circle-button {
+        width: 30px;
+        height: 30px;
+    }
+</style>
+
 
 <body style="background-color: #FEFEFE;">
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #17252A;">
@@ -26,16 +33,7 @@
                     <a class="nav-link" href="home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="appointment">Appointment</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link active" href="#">Shop</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="blog">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="about">About</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="account">Account</a>
@@ -52,114 +50,74 @@
         <div class="row">
             <div class="container-fluid col-8">
                 <div class="row mb-3">
-                    <div class="container-fluid col-6 d-flex justify-content-center mb-5">
-                        <div class="card rounded rounded-5" style="width: 18rem;">
-                            <img th:src="@{assets/image/Paracetamol.jpg}" class="card-img-top">
-                            <form th:action="@{/addToChart}" method="post">
-                                <div class="card-body">
-                                    <h5 class="card-title">Paracetamol</h5>
-                                    <div class="card-text text-secondary-emphasis" style="font-size: small;">Harga :
+                    <div th:if="${shopItems != null}" th:each="item : ${shopItems}">
+                        <div class="container-fluid col-6 mb-4">
+                            <div class="card rounded rounded-5" style="width: 18rem;">
+                                <form th:action="@{/addToCart}" method="post">
+                                    <div class="card-body">
+                                        <h5 class="card-title" th:text="${item.name}"></h5>
+                                        <div class="card-text text-secondary-emphasis" style="font-size: small;">Harga :</div>
+                                        <p class="card-text text-info" th:text="${item.price}"></p>
+                                        <input type="text" name="idBarang" th:value="${item.id}" hidden>
+                                        <input type="number" th:id="'inputQuantity' + ${item.id}" name="quantity" value="0" hidden>
+                                        <div class="container-fluid row">
+                                            <div class="btn btn-outline-dark rounded rounded-circle circle-button"
+                                                th:onclick="|decrementQuantity('${item.id}')|">-</div>
+                                            <div class="container mx-3 d-flex align-content-center justify-content-center col-2">
+                                                <p th:id="'viewQuantity' + ${item.id}" name="quantity">0</p>
+                                            </div>
+                                            <div class="btn btn-outline-dark rounded rounded-circle circle-button"
+                                                th:onclick="|incrementQuantity('${item.id}')|">+</div>
+                                            <button type="submit" class="btn btn-success rounded rounded-5 mt-3">add to cart</button>
+                                        </div>
                                     </div>
-                                    <p class="card-text text-info">5000</p>
-                                    <input type="text" name="idBarang" value="1" hidden>
-                                    <input type="text" name="quantity" >
-                                    <a href="#" class="btn btn-success rounded rounded-5">
-                                        <button type="submit">
-                                            Add to chart
-                                        </button> </a>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="container-fluid col-6 d-flex justify-content-center mb-5">
-                        <div class="card rounded rounded-5" style="width: 18rem;">
-                            <img th:src="@{assets/image/Ibuprofen.jpg}" class="card-img-top">
-                            <form th:action="@{/addToChart}" method="post">
-                                <div class="card-body">
-                                    <h5 class="card-title">Ibuprofen</h5>
-                                    <div class="card-text text-secondary-emphasis" style="font-size: small;">Harga :
-                                    </div>
-                                    <p class="card-text text-info">10000</p>
-                                    <input type="text" name="idBarang" value="2" hidden>
-                                    <input type="text" name="quantity" >
-                                    <a href="#" class="btn btn-success rounded rounded-5">
-                                        <button type="submit">
-                                            Add to chart
-                                        </button> </a>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="container-fluid col-6 d-flex justify-content-center mb-5">
-                        <div class="card rounded rounded-5" style="width: 18rem;">
-                            <img th:src="@{assets/image/Amoxicillin.jpg}" class="card-img-top">
-                            <form th:action="@{/addToChart}" method="post">
-                                <div class="card-body">
-                                    <h5 class="card-title">Amoxicillin</h5>
-                                    <div class="card-text text-secondary-emphasis" style="font-size: small;">Harga :
-                                    </div>
-                                    <p class="card-text text-info">15000</p>
-                                    <input type="text" name="idBarang" value="3" hidden>
-                                    <input type="text" name="quantity" >
-                                    <a href="#" class="btn btn-success rounded rounded-5">
-                                        <button type="submit">
-                                            Add to chart
-                                        </button> </a>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="container-fluid col-6 d-flex justify-content-center mb-5">
-                        <div class="card rounded rounded-5" style="width: 18rem;">
-                            <img th:src="@{assets/image/Omeprazole.jpg}" class="card-img-top">
-                            <form th:action="@{/addToChart}" method="post">
-                                <div class="card-body">
-                                    <h5 class="card-title">Omeprazole</h5>
-                                    <div class="card-text text-secondary-emphasis" style="font-size: small;">Harga :
-                                    </div>
-                                    <p class="card-text text-info">2000</p>
-                                    <input type="text" name="idBarang" value="4" hidden>
-                                    <input type="text" name="quantity" >
-                                    <a href="#" class="btn btn-success rounded rounded-5">
-                                        <button type="submit">
-                                            Add to chart
-                                        </button> </a>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="container-fluid col-4 border border-5" style="height: 500px;">
-                <div class="mt-2">
-                    <h5>Chart</h5>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Nama</th>
-                                <th>Harga</th>
-                                <th>Jumlah</th>
-                                <th>Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Looping through the list -->
-                            <tr th:if="${chartItems != null}" th:each="item : ${chartItems}">
-                                <td th:text="${item.name}"></td>
-                                <td th:text="${item.price}"></td>
-                                <td th:text="${item.quantity}"></td>
-                                <td th:text="${item.price * item.quantity}"></td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th colspan="3" class="text-right">Total</th>
-                            </tr>
-                        </tfoot>
-                    </table>
+            <div class="container-fluid col-4">
+                <div class="container-fluid rounded rounded-5 border border-5 mb-4" style="height: 500px;">
+                    <div class="mt-2">
+                        <h5 class="my-4 text-center">My Cart</h5>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Qty</th>
+                                    <th>Total</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody class="overflow-auto">
+                                <form th:action="@{/deleteCart}" method="post">
+                                    <tr th:if="${cartItems != null}" th:each="item : ${cartItems}">
+                                            <input type="number" name="idDelete" th:value="${item.id}" hidden>
+                                            <td th:text="${item.name}"></td>
+                                            <td th:text="${item.quantity}"></td>
+                                            <td th:text="${item.price * item.quantity}"></td>
+                                            <td> 
+                                                <button type = "submit" class="btn btn-outline-light"><img th:src="@{assets/image/trashCan.png}" ></button>
+                                            </td>
+                                    </tr>
+                                </form> 
+                            </tbody>
+                            <tfoot>
+                                <div colspan="3" class="text-left align-text-bottom font-weight-bold row container" style="font-size: large;">
+                                    Total : 
+                                        <p th:text="${@cartRepository.getTotalPriceSum()}"></p>
+                                </div>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
+                <form th:action="@{/addToOrder}" method="post">
+                    <button class="btn btn-success">
+                        Order
+                    </button>
+                </form>
             </div>
-
         </div>
     </div>
     <footer class="footer">
@@ -171,6 +129,25 @@
         </div>
     </footer>
     <script th:src="@{assets/js/bootstrap.bundle.min.js}"></script>
+    <script>
+        function incrementQuantity(itemId) {
+            var inputElement = document.getElementById('inputQuantity'+itemId);
+            var quantityElement = document.getElementById('viewQuantity'+itemId);
+            quantityElement.innerText = parseInt(quantityElement.innerText) + 1;
+            inputElement.value = parseInt(quantityElement.innerText);
+        }
+
+        function decrementQuantity(itemId) {
+            var inputElement = document.getElementById('inputQuantity'+itemId);
+            var quantityElement = document.getElementById('viewQuantity'+itemId);
+            var quantity = parseInt(quantityElement.innerText);
+            if (quantity > 0) {
+                quantityElement.innerText = quantity - 1;
+                inputElement.value = parseInt(quantityElement.innerText);
+            }
+        }
+    </script>
+
 </body>
 
 </html>

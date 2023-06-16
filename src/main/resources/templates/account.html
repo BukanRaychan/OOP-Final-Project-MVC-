@@ -26,16 +26,7 @@
                     <a class="nav-link" href="home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="appointment">Appointment</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="shop">Shop</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="blog">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="about">About</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="#">Account</a>
@@ -78,22 +69,30 @@
                         <button id = "cancelProfileBtn" type="button" class="btn btn-outline-info mr-4" onclick="toggleCancelMode()" style="display : none;">
                             Cancel
                         </button>
-                        <a id = "changePassword" class="btn btn-outline-info mr-4">Change Password</a>
-                    
                 </form>
                 <form th:object = "${user}" th:action="@{/login}" method="POST">
                     <button id = "logOut" type = "submit" class="btn btn-outline-danger">Log Out</button>
                 </form>
                 </div>
             </div>
-            <div class="container col-6" style = "height: 500;">
-                <div class="mt-0">
-                    Your Appointmens
-                </div>
-                <div class="container border border-5 border-dark" style="height: 400;">
+            <div class="container-fluid rounded rounded-5 mb-4 col-6" style="height: 500px;">
+                <!-- <div class="mt-2">
+                    <h5 class="my-4 text-center">My Order</h5>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Total Item</th>
+                                <th>Price</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody class="overflow-auto">
+                        </tbody>
+                        <tfoot>
 
+                        </tfoot>
+                    </table> -->
                 </div>
-            </div>
         </div>
     </div>
 
@@ -121,7 +120,6 @@
         var editProfileBtn = document.getElementById('editProfileBtn');
         var saveProfileBtn = document.getElementById('saveProfileBtn');
         var cancelProfileBtn = document.getElementById('cancelProfileBtn');
-        var changePassword = document.getElementById('changePassword');
         var logOut = document.getElementById('logOut');
 
         function toggleEditMode() {
@@ -131,7 +129,6 @@
                 emailInput.disabled = false;
                 phoneInput.disabled = false;
                 editProfileBtn.style.display = 'none';
-                changePassword.style.display = 'none';
                 logOut.style.display = 'none';
                 cancelProfileBtn.style.display = 'inline-block';
                 saveProfileBtn.style.display = 'inline-block';
@@ -141,7 +138,6 @@
                 emailInput.disabled = true;
                 phoneInput.disabled = true;
                 editProfileBtn.style.display = 'inline-block';
-                changePassword.style.display = 'inline-block';
                 logOut.style.display = 'inline-block';
                 cancelProfileBtn.style.display = 'none';
                 saveProfileBtn.style.display = 'none';
@@ -159,7 +155,6 @@
             emailInput.disabled = true;
             phoneInput.disabled = true;
             editProfileBtn.style.display = 'inline-block';
-            changePassword.style.display = 'inline-block';
             logOut.style.display = 'inline-block';
             cancelProfileBtn.style.display = 'none';
             saveProfileBtn.style.display = 'none';
